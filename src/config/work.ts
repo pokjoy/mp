@@ -181,6 +181,7 @@ export const PROJECTS: Record<string, ProjectDetail> = {
     // 模块 9：学习与下一步
     learnings:
       'This experience taught me the importance of proactive time management—especially in a startup environment where structure is minimal and progress depends on self-direction. I learned how to set milestones, manage bandwidth realistically, and keep projects moving efficiently—especially by using AI tools to speed up content ideation and design decisions.',
+	protected: false,
   },
   // …如果还有其他项目，按相同格式继续添加
 }
