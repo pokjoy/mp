@@ -16,20 +16,20 @@ export default async function ProjectPage({
   if (!project) return notFound()
 
   if (project.protected) {
-    // 1. 拿到 cookie 存储对象（需要 await）
     const cookieStore = await cookies()
-    // 2. 读取 token
     const token = cookieStore.get(process.env.COOKIE_NAME!)?.value
     if (!token) {
-      redirect(`/unlock?next=/work/${slug}`)
+      // ⬅️ 这里使用 next，不要用 from
+      redirect(`/auth?next=/work/${slug}`)
     }
     try {
       const payload = await verifyToken(token)
       if (payload.slug !== slug) throw new Error('slug mismatch')
     } catch {
-      redirect(`/unlock?next=/work/${slug}`)
+      redirect(`/auth?next=/work/${slug}`)
     }
   }
 
   return <ProjectDetailPage project={project} />
 }
+
