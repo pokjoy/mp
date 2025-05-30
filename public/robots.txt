@@ -1,0 +1,6 @@
+# 允许所有爬虫抓取整个站点
+User-agent: *
+Allow: /
+
+# 指定站点地图位置
+Sitemap: https://qfeng5.pokjoy.com/sitemap.xml
