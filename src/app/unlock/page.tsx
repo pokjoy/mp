@@ -1,19 +1,27 @@
+// src/app/unlock/page.tsx
 import { Suspense } from 'react'
+import { redirect } from 'next/navigation'
+import UnlockClient from '@/components/UnlockClient'
 
 export const metadata = {
   title: '内容解锁',
 }
 
-export default function UnlockPage() {
+interface Props {
+  searchParams: Promise<{ next?: string }>
+}
+
+export default async function UnlockPage({ searchParams }: Props) {
+  const { next } = await searchParams
+  
+  if (!next) {
+    // 如果没有 next 参数，重定向到首页
+    redirect('/')
+  }
+
   return (
     <Suspense fallback={<div>加载中…</div>}>
-      {/* UnlockClient 会在加载完成后 hydratate */}
-      {/* ⚠️ 注意这里改为相对路径或别名引入 */}
-      <UnlockClient />
+      <UnlockClient initialNext={next} />
     </Suspense>
   )
 }
-
-// 因为 page.tsx 是 Server 组件，所以这里不需要 'use client'
-import UnlockClient from './UnlockClient'
-

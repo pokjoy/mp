@@ -13,23 +13,26 @@ export default async function ProjectPage({
 }) {
   const { slug } = await params
   const project: ProjectDetail | undefined = PROJECTS[slug]
+  
   if (!project) return notFound()
 
   if (project.protected) {
     const cookieStore = await cookies()
     const token = cookieStore.get(process.env.COOKIE_NAME!)?.value
+    
     if (!token) {
-      // ⬅️ 这里使用 next，不要用 from
-      redirect(`/auth?next=/work/${slug}`)
+      redirect(`/unlock?next=/work/${slug}`)
     }
+    
     try {
       const payload = await verifyToken(token)
-      if (payload.slug !== slug) throw new Error('slug mismatch')
+      if (payload.slug !== slug) {
+        throw new Error('slug mismatch')
+      }
     } catch {
-      redirect(`/auth?next=/work/${slug}`)
+      redirect(`/unlock?next=/work/${slug}`)
     }
   }
 
   return <ProjectDetailPage project={project} />
 }
-
