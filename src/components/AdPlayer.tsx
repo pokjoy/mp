@@ -233,17 +233,6 @@ export function AdPlayer({ next }: AdPlayerProps) {
             </div>
           </div>
           
-          <div className="bg-gray-800 p-4 rounded-lg">
-            <p className="text-sm text-gray-300 mb-3">
-              ⚡ 转为横屏后将自动：
-            </p>
-            <ul className="text-xs text-gray-400 space-y-1 text-left">
-              <li>• 开始播放广告视频</li>
-              <li>• 提供更好的观看体验</li>
-              <li>• 播放70%后可跳过</li>
-            </ul>
-          </div>
-          
           {/* 强制继续选项 */}
           <button
             onClick={handleForceStart}

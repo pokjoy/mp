@@ -6,9 +6,14 @@ interface TagBadgeProps {
 }
 
 export function TagBadge({ tag }: TagBadgeProps) {
-  const config = TAGS[tag] || { label: tag, colorClass: 'bg-gray-100 text-gray-800' };
+  const config = TAGS[tag] || { 
+    label: tag, 
+    colorClass: 'bg-gray-100 text-gray-800 border border-gray-200',
+    darkColorClass: 'dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600'
+  };
+  
   return (
-    <span className={`inline-block px-2 py-1 text-xs font-normal font-sans rounded-full ${config.colorClass}`}>
+    <span className={`inline-block px-3 py-1.5 text-xs font-medium rounded-full transition-colors ${config.colorClass} ${config.darkColorClass || ''}`}>
       {config.label}
     </span>
   );
