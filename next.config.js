@@ -2,11 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    PROJECT_PASSWORD: process.env.PROJECT_PASSWORD,
-    COOKIE_NAME:       process.env.COOKIE_NAME,
-    COOKIE_MAX_AGE:    process.env.COOKIE_MAX_AGE,
+    // 新增解锁需要的 env
+    JWT_SECRET:       process.env.JWT_SECRET,
+    CODE_LIST:        process.env.CODE_LIST,
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
 
